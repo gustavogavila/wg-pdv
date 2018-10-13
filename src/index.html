@@ -8,70 +8,16 @@
         <div class="container">
 
             <div id="painel-principal">
-                Cliente <input type="text" id="cliente"><br/>
+                Cliente <input type="text" id="cliente">
                 Data <input type="text" id="data-venda">
                 <button id="nova-venda">Nova Venda</button>
-                <button id="finaliza-venda">Finalizar Venda</button>
-                <button id="cancela-venda">Cancelar</button>
-
             </div>
 
-            <div id="nota-fiscal">
-                <fieldset>
-                    <legend>Nota Fiscal</legend>
-                        <div id="painel-seleciona-produto">
-                            Produto
-                            <select id="produtos">
-                                <option value="">--Selecione--</option>
-                                <option value="teste">Produto de teste</option>
-                            </select>
-                            Quantidade
-                            <select id="quantProd">
-                                <option value="1">1</option>
-                            </select>
-                            <button id="inclui-produto">Incluir</button>
-                        </div>
+            <br/>
 
-                        <br/>
-
-                        <div id="div-tabela-produtos">
-                            <table id="tabela-produtos" border="1">
-                                <thead>
-                                    <th>Produto</th>
-                                    <th>Img</th>
-                                    <th>Qtd</th>
-                                    <th>Valor</th>
-                                    <th>Total</th>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Mouse</td>
-                                        <td></td>
-                                        <td>1</td>
-                                        <td>39.90</td>
-                                        <td>39.90</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Pen-drive 4GB</td>
-                                        <td></td>
-                                        <td>3</td>
-                                        <td>20.00</td>
-                                        <td>60.00</td>
-                                    </tr>
-                                    <tr></tr>
-                                </tbody>
-                                <tfoot>
-                                    <td colspan="4" style="text-align:right">
-                                        Total Nota R$
-                                    </td>
-                                    <td>xxx,xx</td>
-                                </tfoot>
-                            </table>
-                        </div>
-                </fieldset>
-
-            </div>
+            <div id="nota-fiscal"></div>
 
         </div>
+        <script src="js/main.js" charset="utf-8"></script>
     </body>
 </html>
