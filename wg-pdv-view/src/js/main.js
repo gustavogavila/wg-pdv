@@ -1,110 +1,48 @@
-let $divNotaFiscal = document.getElementById('nota-fiscal');
-
-const ativaBotoes = () => {
-    let btnFinalizaVenda = document.createElement('button');
-    btnFinalizaVenda.setAttribute('id', 'btn-finaliza-venda');
-    btnFinalizaVenda.textContent = 'Finaliza Venda';
-
-    let btnCancelaVenda = document.createElement('button');
-    btnCancelaVenda.setAttribute('id', 'btn-cancela-venda');
-    btnCancelaVenda.textContent = 'Cancelar';
-
-    let divPainelPrincipal = document.getElementById('painel-principal');
-    divPainelPrincipal.appendChild(btnFinalizaVenda);
-    divPainelPrincipal.appendChild(btnCancelaVenda);
+let listaVenda = [];
+let venda = {
+   Pago:0,
+   Troco:0,
+   Total:0
 }
 
-const geraNF = () => {
 
-    let $fieldset = document.createElement('fieldset');
+// motando lista de produtos
 
-    let $legend = document.createElement('legend');
-    $legend.textContent = 'Nota Fiscal';
+let listaProdutos = document.querySelector('#produtos');
+let produtos = tProdutos.Dados();
+templateListaProdutos = () =>produtos.map(produto => `<option value="${produto.id}">${produto.Nome}</option>`).join(' ')
 
-    // Criando form de preenchimento de itens
+listaProdutos.innerHTML = templateListaProdutos();
 
-    let $divFormItem = document.createElement('div');
-    $divFormItem.setAttribute('id', 'form-item');
+// adicionando produtos a venda
 
-    let $labelForm01 = document.createElement('label');
-    $labelForm01.textContent = 'Produto';
+let addVendaBtn = document.querySelector('#addVenda');
+addVendaBtn.addEventListener('click',()=>{
+let produtoSelecionado = document.querySelector('#produtoSelecionado')
+let quantidadeProduto = document.querySelector('#quantidadeProduto')
+listaVenda.push({...tProdutos.Buscar('id',produtoSelecionado.value)[0],quantidade:quantidadeProduto.value})
+produtoSelecionado.value = "";
+atualizarPDV();
+})
 
-    let $selectForm01 = document.createElement('select');
-    $selectForm01.setAttribute('id', 'produtos');
+atualizarPDV=()=>{
+    let produtosVenda = document.querySelector('#produtosVenda');
+    let total = document.querySelector('#total');
+    let troco = document.querySelector('#troco');
+    let pago = document.querySelector('#pago');
 
-    let $optionDefault01 = document.createElement('option');
-    $optionDefault01.setAttribute('value', '');
-    $optionDefault01.textContent = '--Selecione--';
+    produtosVenda.innerHTML = listaVenda.map(produto=>{
+        return `<tr>
+        <td>${produto.Nome}</td>
+        <td>${produto.Valor}</td>
+        <td>${produto.quantidade}</td>
+        </tr>`
+    }).join('')
+        
+    venda.Total  = listaVenda.reduce((acc,val)=> acc + (parseFloat(val.Valor) * parseFloat(val.quantidade)),0)
 
-    let $labelForm02 = document.createElement('label');
-    $labelForm02.textContent = 'Quantidade';
-
-    let $selectForm02 = document.createElement('select');
-    $selectForm02.setAttribute('id', 'quantProd');
-
-    let $optionDefault02 = document.createElement('option');
-    $optionDefault02.setAttribute('value', '1');
-    $optionDefault02.textContent = '1';
-
-    let $btnIncluiProduto = document.createElement('button');
-    $btnIncluiProduto.setAttribute('id', 'inclui-produto');
-    $btnIncluiProduto.textContent = 'Incluir';
-
-    $selectForm01.appendChild($optionDefault01);
-    $selectForm02.appendChild($optionDefault02);
-    $divFormItem.appendChild($labelForm01);
-    $divFormItem.appendChild($selectForm01);
-    $divFormItem.appendChild($labelForm02);
-    $divFormItem.appendChild($selectForm02);
-    $divFormItem.appendChild($btnIncluiProduto);
-    $fieldset.appendChild($legend);
-    $fieldset.appendChild($divFormItem);
-
-    // Criando tabela de itens
-
-    let $divTabelaItens = document.createElement('div');
-    $divTabelaItens.setAttribute('id', 'div-tabela-itens');
-
-    let $tabelaItens = document.createElement('table');
-    $tabelaItens.setAttribute('id', 'tabela-itens');
-    $tabelaItens.setAttribute('border', '1');
-
-    let $thead = document.createElement('thead');
-    $thead.innerHTML = `
-        <th>Produto</th>
-        <th>Img</th>
-        <th>Qtd</th>
-        <th>Valor</th>
-        <th>Total</th>
-    `;
-
-    let $tbody = document.createElement('tbody');
-    let $tfoot = document.createElement('tfoot');
-
-    let $tdTotal = document.createElement('td');
-    $tdTotal.setAttribute('id', 'total-nota');
-    $tdTotal.textContent = 'xxx,xx';
-
-    $tfoot.innerHTML = `
-        <td colspan="4" style="text-align:right">Total Nota R$</td>
-        <td>${$tdTotal.innerHTML}</td>
-    `
-    $tabelaItens.appendChild($thead);
-    $tabelaItens.appendChild($tbody);
-    $tabelaItens.appendChild($tfoot);
-    $divTabelaItens.appendChild($tabelaItens);
-
-    $fieldset.appendChild($divTabelaItens);
-
-    // Adicionando o form e a tabela de itens à $divNotaFiscal
-
-    $divNotaFiscal.appendChild($fieldset);
+    total.innerHTML = venda.Total;
+    troco.innerHTML = venda.Troco;
+    pago.innerHTML = venda.Pago;
+        
 }
-
-const iniciaVenda = () => {
-    ativaBotoes();
-    geraNF();
-}
-
-let btnNovaVenda = document.getElementById('nova-venda');
-btnNovaVenda.addEventListener('click', iniciaVenda);
