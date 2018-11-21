@@ -1,0 +1,206 @@
+:root{
+
+    --borda:solid #cccccc 1px;
+    --primaria:#fafafa;
+    --secondaria:#f0f0f0;
+    --input-back:transparent;
+    --input-texto:#929292;
+    --texto:#000;
+}
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  
+}
+input{
+background: var(--input-back);
+color: var(--input-texto);
+}
+
+*::after,*::before{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+.container {
+    width: 100%;
+    height: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 20px;
+    background: var(--primaria);
+    color: var(--texto)
+    
+    /* border: solid #000 1px; */
+}
+.pdv{
+    margin-left: -5px;
+    margin-right:  - 5px;
+}
+
+.col{
+    display: inline-block;
+    vertical-align: top;
+     padding-left: 5px;
+     padding-right: 5px;
+     margin-right: -4px; 
+     width: 100%;
+    border: var(--borda);
+}
+.detalhe{
+  height: 400px;
+  width: 66.6666%
+}
+
+.detalhe-menu{
+    width: 66.6666%
+  }
+.valores{
+    height: 400px;
+    width: 33.3333%
+}
+
+.menu{
+    display: inline-block;
+    vertical-align: top;
+     padding-left: 5px;
+     padding-right: 5px;
+     margin-right: -4px; 
+    border: var(--borda);
+    width: 100%
+}
+
+
+.produtos{
+    width: 100%;
+    overflow: auto;
+    height: 100%;
+    display: block;
+    font-size: 1.6rem;
+    text-align: left;
+}
+
+.produtos td{
+    background: var(--secondaria);
+}
+.produtos td{
+    border: 1px rgb(155, 151, 151) dotted;
+}
+
+.btn{
+    padding: 3px;
+    margin: 5px 3px;
+    border: none;
+    font-weight: bold;
+    border: none;
+    outline: none;
+    height: 40px;
+    font-size: 16px;
+    background: var(--secondaria);
+    color:var(--texto);
+    text-decoration: none;
+    text-transform: uppercase;
+
+    cursor: pointer;
+}
+.btn:hover{
+    opacity: 0.7;
+}
+
+.campo{
+    padding: 5px;
+    font-size: 1.6rem;
+    margin: 5px 0;
+    height: 35px;
+    border: var(--borda);
+     
+}
+
+.campo-produto{
+    width: 50%;
+}
+.campo-quantidade{
+    width: 15%
+}
+.direita{
+    float: right;
+}
+
+
+.btn-pdv {
+    background: var(--secondaria);
+    margin: 5px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.7);
+    transition: 0.3s;
+    width: 15%;
+    cursor: pointer;
+    height: 100px;
+}
+
+.btn-pdv h1{
+  margin: 5px;
+}
+
+
+
+
+
+.btn-pdv:hover {
+    box-shadow: 0 16px 16px 0 rgba(0,0,0,0.7);
+}
+/* login */
+
+
+.login-pdv{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    width: 340px;
+    background: var(--primaria)
+}
+
+.logo{
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    position: absolute;
+    top: calc(-280px/2);
+    left: calc(50% - 85px);
+}
+.login-titulo{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    color: var(--texto)
+}
+
+.login-pdv p{
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+
+    color: var(--texto)
+}
+.login-pdv input[type='text'],
+.login-pdv input[type='password']{
+   border: none;
+   background: transparent;
+   outline: none;
+   height: 40px;
+   color: var(--texto);
+   border-bottom: 1px solid var(--secondaria);
+}
+
+.btn-login{
+    border: none;
+    outline: none;
+    height: 40px;
+    font-size: 16px;
+    background: var(--secondaria);
+}

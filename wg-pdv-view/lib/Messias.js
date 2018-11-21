@@ -32,10 +32,10 @@ class Messias {
         let view = capturaArrays(this.componenteAtual.view(), dados, this.stack);
         view = getInstancia(view, this.componenteAtual.nome);
         this.appElement.innerHTML = replaceDados(view, dados);
+        this.componenteAtual.depoisDeInicializar()
     }
     irPara(nome, dados = null) {
         let comp = Componentes[nome]
-        console.log(nome,comp,Componentes)
         if (dados) {
             let compDados = comp.dados || {}
             comp.dados = Object.assign(compDados, dados);
@@ -57,6 +57,21 @@ class Messias {
             window.location.hash = this.componenteAtual.url
         }
     }
+    static salvarSession(valor){
+        sessionStorage.setItem('session',JSON.stringify(valor))
+    }
+    verificarSession(componente=null){
+        let session = JSON.parse(sessionStorage.getItem('session'))
+        if(session)
+        return session
+        
+        if(componente)
+        this.irPara(componente)
+        else return false;
+    }
+    limparSession(){
+        sessionStorage.removeItem('session')
+    }
 }
 
 
@@ -71,6 +86,7 @@ class Componente {
         this.url = url;
     }
     inicializar() {}
+    depoisDeInicializar(){}
     view() {
         return '';
     }
@@ -148,7 +164,102 @@ getKey = (key, obj) => {
 
 // utils
 
-getVALOR = (seletor) => {
+VALOR = (seletor) => {
+    if(document.querySelector(seletor))
     return document.querySelector(seletor).value
+    else return null
 }
+GET = (seletor) =>document.querySelector(seletor)
+
+onTecla=(codigo,callback)=>{
+    document.addEventListener('keypress', (event) => {
+        console.log(event.key,event.keyCode)
+        if(event.keyCode == codigo){
+            callback();
+        }
+      });
+}
+
+
+stringParaHtml = (str)=>{
+    let html = document.createElement('template');
+    html.innerHTML = str;
+    return html.content.firstElementChild
+}
+
+toggleModal =(titulo,conteudo,height = null)=> {
+    var modal = document.querySelector('.modal');
+    var _conteudo = document.querySelector('.conteudo');
+    var _titulo = document.querySelector('.modal-titulo');
+    _titulo.textContent = titulo;
+    _conteudo.innerHTML = conteudo
+    modal.classList.toggle('show-modal');
+}
+fecharModal=()=>{
+    var modal = document.querySelector('.modal');
+    modal.classList.toggle('show-modal');
+}
+
+(setarModal=()=>{
+    let html = ` 
+    <div class="modal">
+    <div class="modal-conteudo">
+        
+        <h1><span class='modal-titulo'>!<span></h1>
+        <div class="conteudo">
+        
+        </div>
+    </div>
+    </div>`
+    let css = `
+    .modal {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        visibility: hidden;
+        transform: scale(1.1);
+        transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+    }
+    .modal-conteudo {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 1rem 1.5rem;
+        width: 24rem;
+        border-radius: 0.5rem;
+    }
+    .btn-fechar {
+        float: right;
+        width: 1.5rem;
+        line-height: 1.5rem;
+        text-align: center;
+        cursor: pointer;
+        border-radius: 0.25rem;
+        background-color: lightgray;
+    }
+    .btn-fechar:hover {
+        background-color: darkgray;
+    }
+    .show-modal {
+        opacity: 1;
+        visibility: visible;
+        transform: scale(1.0);
+        transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+    }
+     `
+    let style = document.createElement('style');
+    style.innerHTML = css;
+     document.head.appendChild(style)
+     document.body.appendChild(stringParaHtml(html))
+
+     var closeButton = document.querySelector('.btn-fechar');
+     closeButton.addEventListener("click", toggleModal);
+})()
+
 

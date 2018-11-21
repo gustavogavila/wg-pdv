@@ -6,26 +6,36 @@ class Pdv extends Componente{
             })  
     }
     
-  
+  inicializar(){
+    if(app.verificarSession()){
+        this.dados =  {Nome:app.verificarSession().Nome}
+    }
+
+   }
     registrarVenda(){
         app.irPara('Venda');
     }
-
+    Pedidos(){
+        app.irPara('Pedidos');
+    }
+    Relatorios(){
+        app.irPara('Relatorios');
+    }
    view(){
-    return `<div class="pdv">
-     <h1>bem-vindo {Nome}</h1>
-
+    return `<div>
+     <h1>Bem-vindo {Nome}</h1>
+  <hr/>
     <div class="btn-pdv" #onclick=registrarVenda()>
     <h1>Registrar Venda</h1>
     </div>
 
 
-  <div class="btn-pdv">
+  <div class="btn-pdv" #onclick=Pedidos()>
   <h1>Verificar Pedidos</h1>
   </div>
 
 
-  <div class="btn-pdv">
+  <div class="btn-pdv" #onclick=Relatorios()>
   <h1>Relatorios</h1>
   </div>
 
