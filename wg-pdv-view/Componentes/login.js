@@ -1,31 +1,30 @@
-class Login extends Componente{
-    constructor(){
-        super({
-               nome:'Login',
-               url:'#Login',
-               dados:{usuario:'',senha:''}
-              })
-            }
-            inicializar(){
-                if(app.verificarSession()){
-                    app.irPara('pdv',app.verificarSession())
-                }
-            }
+class Login extends Componente {
+  constructor() {
+    super({
+      nome: "Login",
+      url: "#Login",
+      dados: { usuario: "", senha: "" }
+    });
+  }
+  inicializar() {
+    if (app.verificarSession()) {
+      app.irPara("pdv", app.verificarSession());
+    }
+  }
 
-            logar(){
-                 let usuario = VALOR('#usu');
-                 let senha = VALOR('#senha')
-                 logar(usuario,senha)
-                  return false;
-            }
+  logar() {
+    let usuario = VALOR("#usu");
+    let senha = VALOR("#senha");
+    logar(usuario, senha);
+    return false;
+  }
 
-            recuperarSenha(){
-                app.irPara('recuperarSenha')
-            }
-                   
+  recuperarSenha() {
+    app.irPara("recuperarSenha");
+  }
 
-    view(){
-        return `    
+  view() {
+    return `    
     <div class="login-pdv">
        <img src='./imgs/tapioca.png' class='logo'/>
        <h1 class='login-titulo'>Login</h1>
@@ -38,9 +37,8 @@ class Login extends Componente{
         <button type="button" class="btn btn-login" #onclick=recuperarSenha() >Esqueci minha senha</button>
         </form>
         </div>
-        `
-    }
-
+        `;
+  }
 }
 
-app.criarComponente(Login)
+app.criarComponente(Login);

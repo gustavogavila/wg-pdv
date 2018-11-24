@@ -1,20 +1,16 @@
-class Pedidos extends Componente{
-    constructor(){
-        super({nome:'Pedidos',
-               url:'#pedidos',
-                dados:{}
-            })  
-    }
-    
-  inicializar(){
-     app.verificarSession()
-   }
-  pdv(){
-      app.irPara('pdv')
+class Pedidos extends Componente {
+  constructor() {
+    super({ nome: "Pedidos", url: "#pedidos", dados: {} });
   }
 
+  inicializar() {
+    app.verificarSession();
+  }
+  pdv() {
+    app.irPara("pdv");
+  }
 
-   view(){
+  view() {
     return `
     <div class="pdv">
     <div class="col detalhe-menu">
@@ -46,8 +42,8 @@ class Pedidos extends Componente{
         </table>
     </div>
     </div>
-    `
-}
+    `;
+  }
 }
 
 app.criarComponente(Pedidos);

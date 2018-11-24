@@ -1,16 +1,13 @@
-class recuperarSenha extends Componente{
-    constructor(){
-        super({nome:'recuperarSenha',
-               url:'#recuperarsenha',
-                dados:{}})  
-    }
-    
-    Recuperar(){
-        alert('email para recuperação de senha enviados')
-    }
+class recuperarSenha extends Componente {
+  constructor() {
+    super({ nome: "recuperarSenha", url: "#recuperarsenha", dados: {} });
+  }
 
+  Recuperar() {
+    alert("email para recuperação de senha enviados");
+  }
 
-   view(){
+  view() {
     return `
     <div class="container">
     <form #onSubmit=Recuperar()>
@@ -19,8 +16,8 @@ class recuperarSenha extends Componente{
     <button class="btn" type="submit" >Recuperar</button> 
     </form>
     </div>
-    `
-}
+    `;
+  }
 }
 
 app.criarComponente(recuperarSenha);

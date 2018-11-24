@@ -1,27 +1,23 @@
-class Pdv extends Componente{
-    constructor(){
-        super({nome:'pdv',
-               url:'#pdv',
-                dados:{}
-            })  
-    }
-    
-  inicializar(){
-    if(app.verificarSession()){
-        this.dados =  {Nome:app.verificarSession().Nome}
-    }
+class Pdv extends Componente {
+  constructor() {
+    super({ nome: "pdv", url: "#pdv", dados: {} });
+  }
 
-   }
-    registrarVenda(){
-        app.irPara('Venda');
+  inicializar() {
+    if (app.verificarSession()) {
+      this.dados = { Nome: app.verificarSession().Nome };
     }
-    Pedidos(){
-        app.irPara('Pedidos');
-    }
-    Relatorios(){
-        app.irPara('Relatorios');
-    }
-   view(){
+  }
+  registrarVenda() {
+    app.irPara("Venda");
+  }
+  Pedidos() {
+    app.irPara("Pedidos");
+  }
+  Relatorios() {
+    app.irPara("Relatorios");
+  }
+  view() {
     return `<div>
      <h1>Bem-vindo {Nome}</h1>
   <hr/>
@@ -40,8 +36,8 @@ class Pdv extends Componente{
   </div>
 
     </div> 
-    `
-}
+    `;
+  }
 }
 
 app.criarComponente(Pdv);

@@ -11,7 +11,7 @@ class Relatorios extends Componente{
    }
   depoisDeInicializar(){
     var ctx = document.getElementById("linha").getContext('2d');
-        var myChart = new Chart(ctx, {
+        var line = new Chart(ctx, {
             type: 'line',
             data: {
               labels: ['18/11/2018','19/11/2018','20/11/2018'],
