@@ -7,7 +7,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node node_modules/http-server/bin/http-server"
   },
   "repository": {
     "type": "git",
@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/gustavogavila/wg-pdv/issues"
   },
-  "homepage": "https://github.com/gustavogavila/wg-pdv#readme"
+  "homepage": "https://github.com/gustavogavila/wg-pdv#readme",
+  "dependencies": {
+    "http-server": "^0.11.1"
+  }
 }
