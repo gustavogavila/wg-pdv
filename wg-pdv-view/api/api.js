@@ -1,13 +1,35 @@
-const urlBase = "http://localhost/wg-pdv-api/";
+const urlBase = "https://radiant-springs-46818.herokuapp.com/";
 
-function logar(usuario, senha) {
-  let perfil = tVendedor.Buscar("usuario", usuario)[0];
-  if (perfil && perfil.senha == senha) {
-    Messias.salvarSession({ Nome: perfil.Nome, id: perfil.id });
-    app.irPara("pdv", { Nome: perfil.Nome, id: perfil.id });
-  } else {
-    alert("usuario não existe em nossa base");
+ function logar(usuario, senha) {
+
+  //   Messias.salvarSession({ Nome: perfil.Nome, id: perfil.id });
+  //   app.irPara("pdv", { Nome: perfil.Nome, id: perfil.id });
+
+  const url = `${urlBase}vendedor/login.php`;
+  console.log(url)
+  const dados = {
+    email:usuario,
+     senha:senha
   }
+  const headers = {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json; charset=utf-8'
+  }
+
+  console.log(JSON.stringify(dados))
+  fetch(url,{
+    method:"POST",
+    headers:headers,
+    body:JSON.stringify(dados)
+  })
+    .then(resp => resp.json())
+    .then(dados => {
+      console.log(dados)
+      Messias.salvarSession({ Nome: dados.nome, id: dados.id });
+      app.irPara("pdv", { Nome: dados.nome, id: dados.id });
+    }).catch((err)=>console.log(err));
+
+
   return true;
 }
 
