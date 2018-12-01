@@ -32,7 +32,7 @@ class Login extends Componente {
         <input class="campo" id='usu' type='text' placeholder='Usuario'/>
         <p>Senha</p>
         <input class="campo" id='senha' type='password' placeholder='Senha'/>
-        <button class="btn btn-login"  #onSubmit=logar() >Logar</button> 
+        <button class="btn btn-login"  #onClick=logar() >Logar</button> 
         <button type="button" class="btn btn-login" #onclick=recuperarSenha() >Esqueci minha senha</button>
         </div>
         `;
