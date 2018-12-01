@@ -1,0 +1,23 @@
+{
+  "name": "wg-pdv",
+  "version": "1.0.0",
+  "description": "Sistema de ponto de venda em JS",
+  "main": "app.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gustavogavila/wg-pdv.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gustavogavila/wg-pdv/issues"
+  },
+  "homepage": "https://github.com/gustavogavila/wg-pdv#readme"
+}
