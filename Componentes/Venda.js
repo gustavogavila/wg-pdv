@@ -79,11 +79,16 @@ class Venda extends Componente {
     buscarClientePorCPF(cpf)
       .then(cliente => {
         this.dados.cliente = cliente;
-        GET("#Cliente").textContent = `Cliente: ${cliente.name}`;
+        GET("#Cliente").textContent = `Cliente: ${cliente.nome}`;
       })
-      .catch(() => console.warn("cliente não encontrado"));
+      .catch((err) => console.warn(err,"cliente não encontrado"));
     fecharModal();
   }
+
+  pdv() {
+    app.irPara("pdv");
+  }
+
 
   update() {
     this.dados.venda.total = this.dados.venda.produtos.reduce(
@@ -96,6 +101,7 @@ class Venda extends Componente {
   view() {
     return `<div class="pdv">
     <div class="col menu">
+    <button class="btn " #onclick=pdv() >Inicio</button>
         <input class="campo campo-produto"  #onkeypress=selecionarProduto(event,13) placeholder="Produto" id="produtoSelecionado" list="produtos" name="produto" >
         <datalist  id="produtos">
         #{produto de produtos}
@@ -104,6 +110,7 @@ class Venda extends Componente {
         </datalist>
         <input class="campo campo-quantidade" #onkeypress=adicionarProduto(event,13) type="number" min="1" value="1" id="quantidadeProduto" name="Quantiade" >
         <button class="btn " #onclick=adicionarProduto() >Adicionar</button>
+        
         <h1 id='Cliente'>Cliente: Venda Sem Cliente</h1>
     </div>
     <div class="col detalhe">

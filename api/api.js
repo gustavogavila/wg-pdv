@@ -1,7 +1,6 @@
 const urlBase = "https://radiant-springs-46818.herokuapp.com/";
 
  function logar(usuario, senha) {
-
   const url = `${urlBase}vendedor/login.php`;
   const dados = {
     email:usuario,
@@ -10,7 +9,6 @@ const urlBase = "https://radiant-springs-46818.herokuapp.com/";
   const headers = {
     'Content-Type': 'application/json; charset=utf-8'
   }
-
   fetch(url,{
     method:"POST",
     headers:headers,
@@ -63,8 +61,18 @@ function finalizarVenda(dados) {
 
 //busca o cliente por cpf
 function buscarClientePorCPF(cpf) {
-  let url = `https://jsonplaceholder.typicode.com/users/` + cpf;
-  return fetch(url)
+  const url = `${urlBase}cliente/find-by-cpf.php`;
+  const dados = {
+    cpf
+  }
+  const headers = {
+    'Content-Type': 'application/json; charset=utf-8'
+  }
+  return fetch(url,{
+    method:"POST",
+    headers:headers,
+    body:JSON.stringify(dados)
+  })
     .then(resp => resp.json())
     .then(dados => dados);
 }
