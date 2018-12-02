@@ -42,7 +42,7 @@ function finalizarVenda({ cliente, venda,vendedor }) {
     vendedor_id: vendedor.id.toString(),
     itensPedido: venda.produtos.map(produto => {
       return {
-        desconto: produto.desconto?produto.desconto:"0.0",
+        desconto: produto.desconto?produto.desconto.toFixed(2):"0.0",
         quantidade: produto.Quantidade,
         preco: produto.preco,
         produto_id: produto.id
