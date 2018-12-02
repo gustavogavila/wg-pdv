@@ -66,7 +66,7 @@ class Venda extends Componente {
   cliente() {
     let conteudo = `
     <div class="valores">
-    <input class="campo" id='clienteCpf' type='text' placeholder='CPF cliente'/>
+    <input class="campo" id='clienteCpf' type='number' max='99999999999' placeholder='CPF cliente'/>
     <button class="btn" onclick="Messias.get('Venda').buscarCliente();">Pronto</button>
     </div>
     `;
