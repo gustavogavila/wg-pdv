@@ -81,7 +81,9 @@ class Venda extends Componente {
         this.dados.cliente = cliente;
         GET("#Cliente").textContent = `Cliente: ${cliente.nome}`;
       })
-      .catch((err) => console.warn(err,"cliente não encontrado"));
+      .catch((err) => {
+        GET("#Cliente").textContent = `Cliente: Venda Sem Cliente`;
+        console.warn(err,"cliente não encontrado")});
     fecharModal();
   }
 
