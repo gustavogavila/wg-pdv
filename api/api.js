@@ -44,7 +44,7 @@ function finalizarVenda(dados) {
       return {
         desconto: produto.desconto,
         quantidade: produto.Quantidade,
-        preco: produto.Valor,
+        preco: produto.preco,
         produto_id: produto.id
       };
     })
