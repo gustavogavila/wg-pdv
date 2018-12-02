@@ -8,7 +8,6 @@ const urlBase = "https://radiant-springs-46818.herokuapp.com/";
      senha:senha
   }
   const headers = {
-    'Accept': 'application/json',
     'Content-Type': 'application/json; charset=utf-8'
   }
 
