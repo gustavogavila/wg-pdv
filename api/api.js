@@ -3,7 +3,6 @@ const urlBase = "https://radiant-springs-46818.herokuapp.com/";
  function logar(usuario, senha) {
 
   const url = `${urlBase}vendedor/login.php`;
-  console.log(url)
   const dados = {
     email:usuario,
      senha:senha
@@ -16,7 +15,7 @@ const urlBase = "https://radiant-springs-46818.herokuapp.com/";
   fetch(url,{
     method:"POST",
     headers:headers,
-    body:dados
+    body:JSON.stringify(dados)
   })
     .then(resp => resp.json())
     .then(dados => {
