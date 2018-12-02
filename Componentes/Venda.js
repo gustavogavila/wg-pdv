@@ -79,11 +79,11 @@ class Venda extends Componente {
     let cpf = VALOR("#clienteCpf");
     buscarClientePorCPF(cpf)
       .then(cliente => {
+        if(cliente)
         this.dados.cliente = cliente;
-        GET("#Cliente").textContent = `Cliente: ${cliente.nome}`;
+        GET("#Cliente").textContent = `Cliente: ${cliente.nome?cliente.nome:'Venda Sem Cliente'}`;
       })
       .catch((err) => {
-        GET("#Cliente").textContent = `Cliente: Venda Sem Cliente`;
         console.warn(err,"cliente não encontrado")});
     fecharModal();
   }
