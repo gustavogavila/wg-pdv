@@ -16,7 +16,6 @@ const urlBase = "https://radiant-springs-46818.herokuapp.com/";
   })
     .then(resp => resp.json())
     .then(dados => {
-      console.log(dados)
       Messias.salvarSession({ Nome: dados.nome, id: dados.id });
       app.irPara("pdv", { Nome: dados.nome, id: dados.id });
     }).catch((err)=>console.log(err));
@@ -39,11 +38,11 @@ function finalizarVenda({ cliente, venda,vendedor }) {
 
   let vendaObj = {
     valor: venda.total.toString(),
-    cliente_id: cliente.id?cliente.id:"0",
+    cliente_id: cliente.id?cliente.id:"1",
     vendedor_id: vendedor.id.toString(),
     itensPedido: venda.produtos.map(produto => {
       return {
-        desconto: produto.desconto?produto.desconto:"0",
+        desconto: produto.desconto?produto.desconto:"0.0",
         quantidade: produto.Quantidade,
         preco: produto.preco,
         produto_id: produto.id
@@ -53,7 +52,6 @@ function finalizarVenda({ cliente, venda,vendedor }) {
   const headers = {
     'Content-Type': 'application/json; charset=utf-8'
   }
-  console.log(JSON.stringify(vendaObj))
     fetch(`${urlBase}pedido/save.php`,{
       method: "POST",
       headers: headers,
@@ -83,6 +81,13 @@ function buscarClientePorCPF(cpf) {
 
 
 function buscar_pedidos(inicio,fim){
+  const url = `${urlBase}pedido/find-by-period.php?dataInicial=${inicio}&dataFinal=${fim}`;
+  return fetch(url)
+    .then(resp => resp.json())
+    .then(dados => dados);
+}
+
+function buscar_pedidosTodos(inicio,fim){
   const url = `${urlBase}pedido/find-by-period.php?dataInicial=${inicio}&dataFinal=${fim}`;
   return fetch(url)
     .then(resp => resp.json())

@@ -50,6 +50,7 @@ class Venda extends Componente {
           produtoSelecionado
         );
         this.dados.venda.produtos.push(produto);
+        console.log(produto)
         this.update();
         this.proximoFoco("#produtoSelecionado");
       }
@@ -96,7 +97,7 @@ class Venda extends Componente {
     this.dados.venda.total = this.dados.venda.produtos.reduce(
       (acc, cur) => (acc += cur.preco * cur.Quantidade),
       0
-    );
+    ).toFixed(2);
     app.montarView();
   }
 

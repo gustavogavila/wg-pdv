@@ -1,6 +1,18 @@
 class Pedidos extends Componente {
   constructor() {
-    super({ nome: "Pedidos", url: "#pedidos", dados: {} });
+    super({ nome: "Pedidos", url: "#pedidos", 
+    dados: {
+      pedidos:[
+        {
+          id:"0",
+          data:"2018-11-17",
+          quant_itens:5,
+          valor:200
+        }
+      ] 
+    } 
+
+     });
   }
 
   inicializar() {
@@ -31,13 +43,15 @@ class Pedidos extends Componente {
                 </tr>
             </thead>
             <tbody>
+            #{pedido de pedidos}
                <tr>
-                 <td>1</td>
-                 <td>18/11/2018 14:36</td>
-                 <td>5</td>
-                 <td>35,50</td>
+                 <td>{pedido.id}</td>
+                 <td>{pedido.data}</td>
+                 <td>{pedido.quant_itens}</td>
+                 <td>{pedido.valor}</td>
                  <td>FINALIZADO</td>
                </tr>
+               #
             </tbody>
         </table>
     </div>
