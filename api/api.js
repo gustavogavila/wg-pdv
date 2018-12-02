@@ -35,24 +35,28 @@ function buscar_produtos() {
 }
 
 //Envia dados do pedido/venda para base de dados
-function finalizarVenda(dados) {
+function finalizarVenda({ cliente, venda,vendedor }) {
+
   let vendaObj = {
-    valor: dados.venda.total,
-    cliente_id: dados.cliente.id,
-    vendedor_id: dados.vendedor.id,
-    itensPedido: dados.venda.produtos.map(produto => {
+    valor: venda.total.toString(),
+    cliente_id: cliente.id?cliente.id:"0",
+    vendedor_id: vendedor.id.toString(),
+    itensPedido: venda.produtos.map(produto => {
       return {
-        desconto: produto.desconto,
+        desconto: produto.desconto?produto.desconto:"0",
         quantidade: produto.Quantidade,
         preco: produto.preco,
         produto_id: produto.id
       };
     })
   };
-
+  const headers = {
+    'Content-Type': 'application/json; charset=utf-8'
+  }
+  console.log(JSON.stringify(vendaObj))
     fetch(`${urlBase}pedido/save.php`,{
       method: "POST",
-      headers: { "content-type": "application/json" },
+      headers: headers,
       body: JSON.stringify(vendaObj)
     })
       .then(resp => resp.json())
