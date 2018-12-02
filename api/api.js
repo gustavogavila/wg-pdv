@@ -77,3 +77,10 @@ function buscarClientePorCPF(cpf) {
     .then(dados => dados);
 }
 
+
+function buscar_pedidos(inicio,fim){
+  const url = `${urlBase}pedido/find-by-period.php?dataInicial=${inicio}&dataFinal=${fim}`;
+  return fetch(url)
+    .then(resp => resp.json())
+    .then(dados => dados);
+}

@@ -7,7 +7,10 @@ let conteudoModal = (valor, Troco) => `
 </div>
 `;
 let ALERTA_VALOR_MENOR = () =>
-  toggleModal("Pagamento", "Valor pago menor que o devido");
+  toggleModal("Pagamento", `
+  <h4>Valor pago menor que o devido</h4>
+  <button class="btn" onclick="fecharModal();">Entendido!</button>
+  `);
 let ALERTA_PAGAMENTO = (valor, Troco) =>
   toggleModal("Pagamento", conteudoModal(valor, Troco));
 
