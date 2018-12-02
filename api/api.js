@@ -19,9 +19,10 @@ const urlBase = "https://radiant-springs-46818.herokuapp.com/";
   })
     .then(resp => resp.json())
     .then(dados => {
+      console.log(dados)
       Messias.salvarSession({ Nome: dados.nome, id: dados.id });
       app.irPara("pdv", { Nome: dados.nome, id: dados.id });
-    }).catch((err)=>alert('uu'));
+    }).catch((err)=>console.log(err));
 
 
   return true;
