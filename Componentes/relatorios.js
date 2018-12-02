@@ -44,7 +44,7 @@ class Relatorios extends Componente{
     return `
     <div class="pdv">
     <div class="col">
- Periodo:<input type='date'/> Até <input type='date'/>
+ Periodo:<input type='date'/> Até <input type='date'/> <button  class="btn"> Buscar<button/>
     
 </div>
 <div class="col">

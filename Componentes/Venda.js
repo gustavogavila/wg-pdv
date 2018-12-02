@@ -3,23 +3,16 @@ class Venda extends Componente {
     super({
       nome: "Venda",
       url: "#Venda",
-      dados: {
-        produtos: tProdutos.Dados(),
-        cliente: 0,
-        venda: {
-          produtos: [],
-          total: 0,
-          pago: 0,
-          troco: 0,
-          desconto: 0
-        }
-      }
+      dados: {}
     });
   }
   inicializar() {
     app.verificarSession();
     this.cliente();
+    
     this.dados = {
+      produtos: [],
+      cliente: 0,
       venda: {
         produtos: [],
         total: 0,
@@ -28,6 +21,11 @@ class Venda extends Componente {
         desconto: 0
       }
     };
+    buscar_produtos().then(produtos=>{
+      this.dados.produtos = produtos.produtos
+      app.montarView();
+    })
+    
   }
   selecionarProduto(e, codigo = null) {
     let condicao = codigo ? e.keyCode == codigo : true;
@@ -44,12 +42,8 @@ class Venda extends Componente {
   adicionarProduto(e, codigo = null) {
     let condicao = codigo ? e.keyCode == codigo : true;
     if (condicao) {
-      let produtoSelecionado = tProdutos.Buscar(
-        "id",
-        VALOR("#produtoSelecionado")
-      )[0];
-      let quantidadeProduto = document.querySelector("#quantidadeProduto")
-        .value;
+      let produtoSelecionado = this.dados.produtos.find(produto=>produto.id== VALOR('#produtoSelecionado'));
+      let quantidadeProduto = VALOR('#quantidadeProduto')
       if (produtoSelecionado) {
         let produto = Object.assign(
           { Quantidade: quantidadeProduto },
@@ -93,7 +87,7 @@ class Venda extends Componente {
 
   update() {
     this.dados.venda.total = this.dados.venda.produtos.reduce(
-      (acc, cur) => (acc += cur.Valor * cur.Quantidade),
+      (acc, cur) => (acc += cur.preco * cur.Quantidade),
       0
     );
     app.montarView();
@@ -105,7 +99,7 @@ class Venda extends Componente {
         <input class="campo campo-produto"  #onkeypress=selecionarProduto(event,13) placeholder="Produto" id="produtoSelecionado" list="produtos" name="produto" >
         <datalist  id="produtos">
         #{produto de produtos}
-        <option  value="{produto.id}">{produto.Nome}</option>
+        <option  value="{produto.id}">{produto.nome}</option>
         #
         </datalist>
         <input class="campo campo-quantidade" #onkeypress=adicionarProduto(event,13) type="number" min="1" value="1" id="quantidadeProduto" name="Quantiade" >
@@ -124,8 +118,8 @@ class Venda extends Componente {
             <tbody>
             #{produto de venda.produtos}
             <tr>
-            <td>{produto.Nome}</td>
-            <td>{produto.Valor}</td>
+            <td>{produto.nome}</td>
+            <td>{produto.preco}</td>
             <td>{produto.Quantidade}</td>
             </tr>
             #

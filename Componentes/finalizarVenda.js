@@ -58,8 +58,8 @@ class FinalizarVenda extends Componente {
         <tbody>
         #{produto de venda.produtos}
         <tr>
-        <td>{produto.Nome}</td>
-        <td>{produto.Valor}</td>
+        <td>{produto.nome}</td>
+        <td>{produto.preco}</td>
         <td>{produto.Quantidade}</td>
         </tr>
         #
