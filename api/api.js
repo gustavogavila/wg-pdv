@@ -44,7 +44,7 @@ function finalizarVenda({ cliente, venda,vendedor }) {
       return {
         desconto: produto.desconto?produto.desconto.toFixed(2):"0.0",
         quantidade: produto.Quantidade,
-        preco: produto.preco.toFixed(2),
+        preco: produto.preco,
         produto_id: produto.id
       };
     })
