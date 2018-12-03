@@ -24,6 +24,9 @@ class FinalizarVenda extends Componente {
   }
   inicializar() {
     this.dados.vendedor = app.verificarSession();
+    console.log(this.dados.cliente)
+    if(!this.dados.cliente)
+    this.dados.cliente = {id:'Sem Cliente'};
   }
 
   pagar() {
@@ -44,12 +47,12 @@ class FinalizarVenda extends Componente {
   view() {
     return `    
     <div class="valores">
-    <h1>VENDEDOR : {vendedor.id}</h1>
-    <h1>CLIENTE  : {cliente.id}</h1>
+    <h1>VENDEDOR : {{vendedor.id}}</h1>
+    <h1>CLIENTE  : {{cliente.id}}</h1>
     <hr/>
 
     
-        <h2>Total: R$ {venda.total}</h2>
+        <h2>Total: R$ {{venda.total}}</h2>
         <table class="produtos">
         <thead>
             <tr>
@@ -61,9 +64,9 @@ class FinalizarVenda extends Componente {
         <tbody>
         #{produto de venda.produtos}
         <tr>
-        <td>{produto.nome}</td>
-        <td>{produto.preco}</td>
-        <td>{produto.Quantidade}</td>
+        <td>{{produto.nome}}</td>
+        <td>{{produto.preco}}</td>
+        <td>{{produto.Quantidade}}</td>
         </tr>
         #
         </tbody>

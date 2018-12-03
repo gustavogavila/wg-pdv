@@ -38,7 +38,7 @@ function finalizarVenda({ cliente, venda,vendedor }) {
 
   let vendaObj = {
     valor: venda.total.toString(),
-    cliente_id: cliente.id?cliente.id:"1",
+    cliente_id: cliente.id!=='Sem Cliente'?cliente.id:"1",
     vendedor_id: vendedor.id.toString(),
     itensPedido: venda.produtos.map(produto => {
       return {
@@ -87,9 +87,9 @@ function buscar_pedidos(inicio,fim){
     .then(dados => dados);
 }
 
-function buscar_pedidosTodos(inicio,fim){
-  const url = `${urlBase}pedido/find-by-period.php?dataInicial=${inicio}&dataFinal=${fim}`;
+function buscar_pedidosTodos(cpf){
+  const url = `${urlBase}pedido/find-by-cpf.php?cpf=${cpf?cpf:''}`;
   return fetch(url)
     .then(resp => resp.json())
-    .then(dados => dados);
+    .then(({pedidos}) => pedidos);
 }

@@ -19,7 +19,7 @@ class Pdv extends Componente {
   }
   view() {
     return `<div>
-     <h1>Bem-vindo {Nome}</h1>
+     <h1>Bem-vindo {{Nome}}</h1>
   <hr/>
     <div class="btn-pdv" #onclick=registrarVenda()>
     <h1>Registrar Venda</h1>

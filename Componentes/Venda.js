@@ -12,7 +12,7 @@ class Venda extends Componente {
     
     this.dados = {
       produtos: [],
-      cliente: 0,
+      cliente: null,
       venda: {
         produtos: [],
         total: 0,
@@ -66,9 +66,10 @@ class Venda extends Componente {
 
   cliente() {
     let conteudo = `
-    <div class="valores">
+    <div>
     <input class="campo" id='clienteCpf' type='number' max='99999999999' placeholder='CPF cliente'/>
     <button class="btn" onclick="Messias.get('Venda').buscarCliente();">Pronto</button>
+    <button class="btn" onclick="Messias.get('Venda').semCliente()">Sem Cliente</button>
     </div>
     `;
 
@@ -88,11 +89,15 @@ class Venda extends Componente {
     fecharModal();
   }
 
+
   pdv() {
     app.irPara("pdv");
   }
-
-
+  semCliente(){
+    this.dados.cliente = null;
+    fecharModal();
+  }
+ 
   update() {
     this.dados.venda.total = this.dados.venda.produtos.reduce(
       (acc, cur) => (acc += cur.preco * cur.Quantidade),
@@ -108,7 +113,7 @@ class Venda extends Componente {
         <input class="campo campo-produto"  #onkeypress=selecionarProduto(event,13) placeholder="Produto" id="produtoSelecionado" list="produtos" name="produto" >
         <datalist  id="produtos">
         #{produto de produtos}
-        <option  value="{produto.id}">{produto.nome}</option>
+        <option  value="{{produto.id}}">{{produto.nome}}</option>
         #
         </datalist>
         <input class="campo campo-quantidade" #onkeypress=adicionarProduto(event,13) type="number" min="1" value="1" id="quantidadeProduto" name="Quantiade" >
@@ -128,9 +133,9 @@ class Venda extends Componente {
             <tbody>
             #{produto de venda.produtos}
             <tr>
-            <td>{produto.nome}</td>
-            <td>{produto.preco}</td>
-            <td>{produto.Quantidade}</td>
+            <td>{{produto.nome}}</td>
+            <td>{{produto.preco}}</td>
+            <td>{{produto.Quantidade}}</td>
             </tr>
             #
             </tbody>
@@ -139,7 +144,7 @@ class Venda extends Componente {
     <div class="col valores">
 
             <h1>Total:</h1>
-            <h1>R$ {venda.total}</h1>
+            <h1>R$ {{venda.total}}</h1>
 
     </div>
     <div class="menu">
