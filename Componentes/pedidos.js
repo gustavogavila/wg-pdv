@@ -31,7 +31,7 @@ class Pedidos extends Componente {
     <div class="pdv">
     <div class="col detalhe-menu">
     <form onSubmit='return false;'>
-    <input class="campo pattern="${cpfPattern}"  campo-produto" placeholder="CPF" id="cpf"  name="produto" >
+    <input class="campo pattern="${cpfPattern}"  campo-produto" placeholder="CPF" id="cpf"  name="pedido" >
     <button class="btn" #onclick=buscar(this)>Buscar</button>
     <button class="btn" #onclick=pdv()>Voltar</button>
     </form>
